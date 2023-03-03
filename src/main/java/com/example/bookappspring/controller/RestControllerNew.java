@@ -30,7 +30,7 @@ public class RestControllerNew {
     @PutMapping("/api/book")
     public Book updateBook(@RequestBody Book book) {
 
-        bookService.updateBook(book);
+        bookService.updateBook(book.getBookName(), book.getBookAuthor(), book.getBookYear());
         return book;
 
     }

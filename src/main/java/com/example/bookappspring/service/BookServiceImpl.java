@@ -26,40 +26,22 @@ private BookDAO bookDAO;
     @Override
     @Transactional
     public void addBook(Book book) {
-        bookDAO.insert(book);
+        bookDAO.addBook(book);
+    }
+
+    @Transactional
+    public void updateBook(String bookName, String bookAuthor, int bookYear) {
+        bookDAO.updateBook(bookName, bookAuthor, bookYear);
 
     }
 
     @Override
-    public void updateBook(Book book) {
-
-    }
-
-    @Override
+    @Transactional
     public void deleteBookByIsbn(int isbn) {
-
-    }
-
-    @Override
-    @Transactional
-    public void addBook(Book book) {
-        bookDAO.insert(book);
-    }
-
-    @Override
-    @Transactional
-    public void updateBook(Book book) {
-        bookDAO.update(book);
-
-    }
-
-    @Override
-    @Transactional
-    public void deleteBookByIsbn(int id) {
-        Book book = bookDAO.getBookByIsbn(book.getIsbn());
+        Book book = bookDAO.getBookByIsbn(isbn);
         if (book == null) {
             throw new BookException("Book with isbn=" + book.getIsbn() + "doesn't exist");
         }
-        bookDAO.delete(book.getIsbn());
+        bookDAO.deleteBookByIsbn(isbn);
     }
 }

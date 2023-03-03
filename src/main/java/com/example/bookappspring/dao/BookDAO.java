@@ -7,9 +7,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface BookDAO {
-    void insert(Book book);
-    void update(String bookName, String bookAuthor, int bookYear);
-    void delete(int isbn);
+    void addBook(Book book);
+    void updateBook(String bookName, String bookAuthor, int bookYear);
+    void deleteBookByIsbn(int isbn);
     Book getBookByIsbn(int isbn);
     List<Book> getBook();
 
