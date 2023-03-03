@@ -7,6 +7,6 @@ import java.util.List;
 public interface BookService {
     List<Book> getBook();
     void addBook(Book book);
-    void updateBook(Book book);
+    void updateBook(String bookName, String bookAuthor, int bookYear);
     void deleteBookByIsbn(int isbn);
 }
