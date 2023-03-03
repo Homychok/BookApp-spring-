@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
-public class EmployeeExceptionHandler {
+public class BookExceptionHandler {
     @ExceptionHandler
     public ResponseEntity<MessageForException> handleException(
-            EmployeeException employeeException) {
+            BookException employeeException) {
         MessageForException message = new MessageForException();
         message.setMessage(employeeException.getMessage());
         return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);

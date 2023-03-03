@@ -1,13 +1,12 @@
 package com.example.bookappspring.service;
-
-import rest.entity.Employee;
+import com.example.bookappspring.entity.Book;
 
 import java.util.List;
 
+
 public interface BookService {
-    List<Employee> getEmployee();
-    Employee getEmployeeById(int id);
-    void addEmployee(Employee employee);
-    void updateEmployee(Employee employee);
-    void deleteEmployee(int id);
+    List<Book> getBook();
+    void addBook(Book book);
+    void updateBook(Book book);
+    void deleteBookByIsbn(int isbn);
 }

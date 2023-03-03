@@ -1,57 +1,65 @@
 package com.example.bookappspring.service;
 
+import com.example.bookappspring.dao.BookDAO;
+import com.example.bookappspring.entity.Book;
+import com.example.bookappspring.exceptions.BookException;
 import org.springframework.stereotype.Service;
-import rest.dao.EmployeeDAO;
-import rest.entity.Employee;
-import rest.exceptions.EmployeeException;
 
 import javax.transaction.Transactional;
 import java.util.List;
+
 @Service
 public class BookServiceImpl implements BookService {
 
-private EmployeeDAO employeeDAO;
+private BookDAO bookDAO;
 
-    public BookServiceImpl(EmployeeDAO employeeDAO) {
-        this.employeeDAO = employeeDAO;
+    public BookServiceImpl(BookDAO bookDAO) {
+        this.bookDAO = bookDAO;
     }
 
     @Override
     @Transactional
-    public List<Employee> getEmployee() {
-        return employeeDAO.getEmployee();
+    public List<Book> getBook() {
+        return bookDAO.getBook();
     }
 
     @Override
     @Transactional
-    public Employee getEmployeeById(int id) {
-    Employee employee = employeeDAO.getEmployeeById(id);
-        if (employee == null) {
-            throw new EmployeeException("Employee with id=" + id + "doesn't exist");
+    public void addBook(Book book) {
+        bookDAO.insert(book);
+
+    }
+
+    @Override
+    public void updateBook(Book book) {
+
+    }
+
+    @Override
+    public void deleteBookByIsbn(int isbn) {
+
+    }
+
+    @Override
+    @Transactional
+    public void addBook(Book book) {
+        bookDAO.insert(book);
+    }
+
+    @Override
+    @Transactional
+    public void updateBook(Book book) {
+        bookDAO.update(book);
+
+    }
+
+    @Override
+    @Transactional
+    public void deleteBookByIsbn(int id) {
+        Book book = bookDAO.getBookByIsbn(book.getIsbn());
+        if (book == null) {
+            throw new BookException("Book with isbn=" + book.getIsbn() + "doesn't exist");
         }
-        return employee;
-    }
-
-    @Override
-    @Transactional
-    public void addEmployee(Employee employee) {
-employeeDAO.addEmployee(employee);
-    }
-
-    @Override
-    @Transactional
-    public void updateEmployee(Employee employee) {
-        employeeDAO.updateEmployee(employee);
-
-    }
-
-    @Override
-    @Transactional
-    public void deleteEmployee(int id) {
-    Employee employee = employeeDAO.getEmployeeById(id);
-        if (employee == null) {
-            throw new EmployeeException("Employee with id=" + id + "doesn't exist");
-        }
-        employeeDAO.deleteEmployee(id);
+        bookDAO.delete(book.getIsbn());
     }
 }
